@@ -47,9 +47,19 @@ class CreateComment extends Component {
         <br/>
         <form className="createComment" onSubmit={this.handleSubmit}>
           {/* Без связи с методом не будет с правильным событием и вашим методом */}
-          <input type="text" placeholder="Your name" value={this.state.user} onChange={this.handleUserChange}/>
-          <input type="text" placeholder="Comment..." value={this.state.content} onChange={this.handleTextChange}/>
-          <input type="submit" value="Post"/>
+          <input 
+            type="text" 
+            placeholder="Your name" 
+            value={this.state.user} 
+            onChange={this.handleUserChange}/>
+          <input 
+            type="text" 
+            placeholder="Comment..." 
+            value={this.state.content} 
+            onChange={this.handleTextChange}/>
+          <input 
+            type="submit" 
+            value="Post"/>
         </form>
       </React.Fragment>)
     }

@@ -86,9 +86,46 @@ class CommentBox extends Component {
 
 
   render() {
-    // return(<div className="commentBox">
-    //   <Post id={this.props.post.id} content={this.props.post.content} user={this.props.post.id}/>  
-    // </div>)
+
+    return (
+      <div className="commentBox">
+        <Post
+          id={this.props.post.id}
+          content={this.props.post.content}
+          user={this.props.post.user}
+        />
+        {this.state.comments.map(function(comment){
+          return ( 
+            <Comment
+              key={comment.id}
+              content={comment.content}
+              user={comment.user}
+            />
+          );
+        })}
+        <CreateComment onCommentSubmit={this.handleCommentSubmit}/>
+      </div>
+    )
+  }
+}
+
+CommentBox.propTypes = {
+  post: PropTypes.object,
+  comments: PropTypes.arrayOf(PropTypes.object)
+};
+
+render(
+  <CommentBox
+    comments={data.comments}
+    post={data.post}
+    />,
+  node
+);
+
+
+
+
+/* 
     return React.createElement(
       "div",
       {
@@ -111,18 +148,4 @@ class CommentBox extends Component {
         onCommentSubmit: this.handleCommentSubmit // ! Передача родительского метода компоненту CreateComment для использования
       })
     );
-  }
-}
-
-CommentBox.propTypes = {
-  post: PropTypes.object,
-  comments: PropTypes.arrayOf(PropTypes.object)
-};
-
-render(
-  React.createElement(CommentBox, {
-    comments: data.comments,
-    post: data.post
-  }),
-  node
-);
+*/
