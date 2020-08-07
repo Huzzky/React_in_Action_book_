@@ -1,110 +1,92 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {render} from 'react-dom'
-
-// class Secret extends React.Component{
-//     constructor(props) {
-//       super(props);
-//       this.state = {
-//         name: 'top secret!',
-//       };
-//       this.onButtonClick = this.onButtonClick.bind(this);
-//     }
-
-//     onButtonClick() {
-//       this.setState(() => ({
-//         name:'Mark',
-//       }));
-//     }
-
-//     render () {
-//       return(<div>
-//         <h1>My name is {this.state.name}</h1>
-//         <button onClick={this.onButtonClick}>Reveral the secret!</button>
-//       </div>)
-//     }
-// }
-
-// render(
-//   <Secret/>,
-//   document.getElementById('root')
-// );
-
-// class ShallowMerge extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             user: {
-//                 name: 'Mark',
-//                 colors: {
-//                     favorite: 'green',
-//                 },
-//                 //
-//             },
-//             //
-//         };
-//         this.onButtonClick = this.onButtonClick.bind(this);
-//     }
-
-//     onButtonClick() {
-//         this.setState({
-//             user: {
-//               name: 'Vlad',
-//               colors: {
-//                 favorite: 'blue',
-//             },
-//           }
-//         });
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 <h1>My favorite color is {this.state.user.colors.favorite} and my name is {this.state.user.name}</h1>
-//                 <button onClick={this.onButtonClick}>Show the color!</button>
-//             </div>
-//         )
-//     }
-// }
-
-// render(
-//   <ShallowMerge/>,
-//   document.getElementById('root')
-// );
+// import PropTypes from 'prop-types'
+import ShallowMerge from './shallowMerge';
+import Secret from './secret';
+import Counter from './counter';
+import Greeting from './greeting';
+import UserCard from './userProfile';
 
 
-class Counter extends React.Component {
-  static propTypes = {
-    incrementBy: PropTypes.number,
-    onIncrement: PropTypes.func.isRequired
-  };
-  static defualtProps = {
-    incrementBy: 1
-  };
-
-  constructor(props) {
-    super(props);
+class SelectComp extends React.Component {
+  constructor(params) {
+    super(params);
     this.state = {
-      count: 0,
+       clickSelect: 'main',
     };
-    this.onButtonClick = this.onButtonClick.bind(this);
+    this.onButtonClickMain = this.onButtonClickMain.bind(this);
+    this.onButtonClickFirst = this.onButtonClickFirst.bind(this);
+    this.onButtonClickSec = this.onButtonClickSec.bind(this);
+    this.onButtonClickThird = this.onButtonClickThird.bind(this);
+    this.onButtonClick4 = this.onButtonClick4.bind(this);
   }
-  
-  onButtonClick() {
-    this.setState(function(lastState, props) {
-      return { count: lastState.count + props.incrementBy }; 
+
+  onButtonClick4() {
+    this.setState({
+      clickSelect: 'up',
+    })
+
+  }
+  onButtonClickFirst() {
+    this.setState({
+      clickSelect:"secret",
     });
   }
+  onButtonClickSec() {
+    this.setState({
+      clickSelect: "sm",
+    })
+  }
+  onButtonClickThird() {
+    this.setState({
+      clickSelect:'counter',
+    })
+  }
+  onButtonClickMain() {
+    this.setState({
+      clickSelect: 'main',
+    })
+  }
+
   render() {
+    const { clickSelect } = this.state;
+    if (clickSelect==='main') {
+      return(<div>
+        <button onClick={this.onButtonClickFirst}>Secret</button>
+        <button onClick={this.onButtonClickSec}>ShallowMerge</button>
+        <button onClick={this.onButtonClickThird}>Counter</button>
+        <button onClick={this.onButtonClick4}>UserProfile</button>
+        <Greeting for="Vlad"/>
+      </div>)
+    }
+    else if (clickSelect==="up") {
+      return(<div>
+        <UserCard/>
+        <button onClick={this.onButtonClickMain}>Main</button>
+      </div>)
+    }
+    else if (clickSelect==="sm") {
     return (
       <div>
-        <h1>{this.state.count}</h1>
-        <button onClick={this.onButtonClick}>++</button>
+        <ShallowMerge/>
+        <button onClick={this.onButtonClickMain}>Main</button>
       </div>
-    );
+    )}
+    else if (clickSelect==="secret") {
+      return (<div>
+        <Secret/>
+        <button onClick={this.onButtonClickMain}>Main</button>
+      </div>)
+    }
+    else if (clickSelect==="counter") {
+      return(<div>
+        <Counter incrementBy={1}/>
+        <button onClick={this.onButtonClickMain}>Main</button>
+      </div>)
+    } 
   }
 }
 
-render(<Counter incrementBy={1} />,
+render(<SelectComp/>,
   document.getElementById('root')
   );
