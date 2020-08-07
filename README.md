@@ -4,3 +4,4 @@
 | ------------- | ------------- |
 | 1  | [ch01_](https://github.com/Huzzky/React_in_Action_book_/tree/master/ch01_)  |
 | 2  | [ch02_](https://github.com/Huzzky/React_in_Action_book_/tree/master/ch02_)  |
+| 3  | [ch03_](https://github.com/Huzzky/React_in_Action_book_/tree/master/ch03_)  |
