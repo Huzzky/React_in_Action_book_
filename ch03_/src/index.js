@@ -3,17 +3,33 @@ import {render} from 'react-dom'
 import ChildComponent from './ChildComponent'
 
 class ParentComponent extends Component {
+  static defaultProp = (function() {
+    console.log("ParentComponent : defaultProps");
+    return {
+      true: false,
+    };
+  })();
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      text: ''
     };
     this.onInputChange = this.onInputChange.bind(this);
   }
+
+  componentWillMount() {
+    console.log("ParentComponent : componentWillMount");
+  }
+  componentDidMount() {
+    console.log("ParentComponent : componentDidMount");
+  }
+  
+  
   onInputChange(e) {
-    this.setState({
-      text: e.currentTarget.value,
-    });
+    const text = e.currentTarget.value;
+    this.setState(() => ({
+      text: text
+    }));
   }
   render() {
     console.log('ParentComponent : render');

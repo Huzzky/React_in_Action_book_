@@ -12,14 +12,26 @@ class ChildComponent extends Component {
   constructor(props) {
     super(props);
     console.log('ChildComponent : state');
+    this.state = {
+      name: "Mark"
+    };
+  }
+
+  componentWillMount() {
+    console.log("ChildComponent : componentWillMount");
+  }
+
+  componentDidMount() {
+    console.log("ChildComponent : componentDidMount");
   }
   render() {
-    console.log('ChildComponent : render');
-    return (
-      <div>
-        Name: {this.props.name} 
-      </div>
-    );
+    if (this.state.oops){
+      throw new Error("Something went wrong");
+    }
+    console.log("ChildComponent : render");
+    return [
+      <div key='name'>Name: {this.props.name}</div>
+    ];
   }
 };
 
