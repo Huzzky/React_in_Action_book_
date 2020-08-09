@@ -16,4 +16,4 @@
 | ----- | --------- | ----- | ---- |
 | Монтирование | [defualtProps](https://ru.reactjs.org/docs/react-component.html#defaultprops) | componentWillMount | [componentDidMount](https://ru.reactjs.org/docs/react-component.html#componentdidmount) |
 | Обновление | [shouldComponentUpdate](https://ru.reactjs.org/docs/react-component.html#shouldcomponentupdate) | componentWillReceiveProps | [componentDidUpdate](https://ru.reactjs.org/docs/react-component.html#componentdidupdate) |
-| Ошибки | componentDidCatch | componentDidCatch | componentDidCatch |
+| Ошибки | componentDidCatch |
