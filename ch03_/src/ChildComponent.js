@@ -20,7 +20,7 @@ class ChildComponent extends Component {
 
   // componentWillReceiveProps(nextProps) {
   // ! ЭТОТ МЕТОД УСТАРЕЛ И НЕ НУЖНО ИСПОЛЬЗОВАТЬ В НОВОМ КОДЕ ЕГО
-  //   console.log('ChildComponent : componentWillReceiveProps()');/
+  //   console.log('ChildComponent : componentWillReceiveProps()');
   //   console.log('nextProps: ', nextProps);
   // }
   shouldComponentUpdate(nextProps, nextState) {
