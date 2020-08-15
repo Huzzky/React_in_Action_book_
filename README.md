@@ -4,7 +4,7 @@
 
 | *№ Части*  | *Название папки* |
 | ------------- | ------------- |
-| 0 | [DB Django Python](https://github.com/Huzzky/React_in_Action_book_/tree/master/djdb) |
+| 0 | [DB Django Python](https://github.com/Huzzky/React_in_Action_book_/tree/master/my-letter-social/djdb) |
 | 1 | [ch01_](https://github.com/Huzzky/React_in_Action_book_/tree/master/ch01_)  |
 | 2 | [ch02_](https://github.com/Huzzky/React_in_Action_book_/tree/master/ch02_)  |
 | 3 | [ch03_](https://github.com/Huzzky/React_in_Action_book_/tree/master/ch03_)  |
