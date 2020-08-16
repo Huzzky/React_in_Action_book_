@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Filter from 'bad-words';
+import fetch from 'isomorphic-fetch';
+
 
 const filter = new Filter(); // * Применение конструктора для создаия нового экземпляра фильтра
 
@@ -48,8 +50,10 @@ class CreatePost extends Component {
             // * Создание нового объекта публикации
             content: this.state.content,
         };
-        //// console.log("Успешно отправлено");
         console.log(this.state," this.state.content: " + this.state.content);
+        Get()
+        
+        
     }
     render() {
         return(
@@ -59,6 +63,28 @@ class CreatePost extends Component {
             
         </div>)
     }
+}
+
+function Get(){
+    
+    fetch('http://localhost:8000/mls/p/')
+        .then(response => {
+            // network failure, request prevented
+            if (response.status >= 200 && response.status < 300) {
+                return Promise.resolve(response);
+            }
+    
+    
+            return Promise.reject(new Error(response.statusText));
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result.posts)
+        })
+        .catch(error => {
+            console.log(error)
+            return null;
+        });
 }
 
 export default CreatePost;
