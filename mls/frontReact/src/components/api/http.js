@@ -1,29 +1,32 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
-class FetchGet extends Component{
 
-    componentDidMount() {
-        fetch('http://127.0.0.1:8000/mls/p/')
-            .then(response => {
-                // network failure, request prevented
-                if (response.status >= 200 && response.status < 300) {
-                    return Promise.resolve(response);
-                }
-        
-        
-                return Promise.reject(new Error(response.statusText));
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => {
-                console.log(error)
-                return null;
-            });
-    }
+export function getPost(){
+    const axios = require('axios');
+    axios.get('http://127.0.0.1:8000/mls/p/?format=json')
+    .then(function(response){
+        // console.log(response.data.posts)
+        return response.data.posts
+    })
+    .catch(function(error) {
+        console.log(error)
+    })
 }
 
-export default FetchGet;
+
+export function PostAPost(data){
+    console.log(data)
+    axios.post('http://127.0.0.1:8000/mls/p/', {
+            
+                "posts": {
+                    content_post: data.content_post,
+                    user_post_id: data.user_post_id,
+                    uuid_post: data.uuid_post
+                }
+            
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+        
+    }

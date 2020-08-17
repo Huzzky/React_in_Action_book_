@@ -5,10 +5,6 @@ from .models import Post, User
 class PostSerializer(serializers.Serializer):
     uuid_post = serializers.UUIDField()
     content_post = serializers.CharField()
-    date_post = serializers.DateTimeField(format="%h %d, %Y in %H:%M:%S")
-    like_post = serializers.IntegerField()
-    link_post = serializers.CharField()
-    location_post = serializers.CharField()
     user_post_id = serializers.IntegerField()
 
     def create(self, validated_data):

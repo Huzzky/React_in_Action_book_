@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Filter from 'bad-words';
-import fetch from 'isomorphic-fetch';
+import {v4 as uuidv4} from 'uuid';
+
+
 
 
 const filter = new Filter(); // * Применение конструктора для создаия нового экземпляра фильтра
@@ -42,16 +44,23 @@ class CreatePost extends Component {
             };
         });
     }
-    handleSubmit() {
+    handleSubmit(event) {
+        event.preventDefault()
         if (!this.state.valid) {
             return;
         }
-        const newPost = {
+        const data = {
             // * Создание нового объекта публикации
-            content: this.state.content,
+            content_post: this.state.content,
+            uuid_post : uuidv4(),
+            user_post_id: 1
+
         };
-        console.log(this.state," this.state.content: " + this.state.content);
-        Get()
+        this.props.onSubmit(data);
+        this.setState({
+            content: '',
+            valid: null,
+        });
         
         
     }
@@ -59,32 +68,11 @@ class CreatePost extends Component {
         return(
         <div>
             <button onClick={this.handleSubmit}>Пост</button>
-            <textarea placeholder="Что ты думаешь?" onChange={this.handlePostChange}/>
+            <textarea placeholder="Что Вы думаете?" onChange={this.handlePostChange}/>
             
         </div>)
     }
 }
 
-function Get(){
-    
-    fetch('http://localhost:8000/mls/p/')
-        .then(response => {
-            // network failure, request prevented
-            if (response.status >= 200 && response.status < 300) {
-                return Promise.resolve(response);
-            }
-    
-    
-            return Promise.reject(new Error(response.statusText));
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result.posts)
-        })
-        .catch(error => {
-            console.log(error)
-            return null;
-        });
-}
 
 export default CreatePost;

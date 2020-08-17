@@ -5,6 +5,7 @@ import uuid
 
  
 class User(models.Model):
+    id_user = models.AutoField(primary_key=True)
     uuid_user = models.UUIDField(default=uuid.uuid4, unique=True,editable=False)
     name_user = models.CharField(max_length=64, unique=True)
     img_user = models.ImageField(upload_to="img/user", height_field=None, width_field=None, max_length=None, blank=True, null=True)
