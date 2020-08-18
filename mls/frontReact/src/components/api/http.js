@@ -3,18 +3,14 @@ import axios from 'axios';
 
 export function getPost(){
     const axios = require('axios');
-    axios.get('http://127.0.0.1:8000/mls/p/?format=json')
-    .then(function(response){
-        // console.log(response.data.posts)
-        return response.data.posts
-    })
+    return axios.get('http://127.0.0.1:8000/mls/p/?format=json')
     .catch(function(error) {
         console.log(error)
     })
 }
 
 
-export function PostAPost(data){
+export function postAPost(data){
     console.log(data)
     axios.post('http://127.0.0.1:8000/mls/p/', {
             

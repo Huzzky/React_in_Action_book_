@@ -8,20 +8,22 @@ class Posts extends Component{
         this.state = {
             isLoaded: false,
         };
-        this.clickbtn = this.clickbtn.bind(this);
-        // console.log(this.props.data);
+        console.log(this.props.data, "this data")
+        
     }
 
-    clickbtn() {
-        let data = getPost()
-        console.log("data", data);
+    componentDidMount() {
+        getPost().then(function(response){
+            console.log(response.data, 'this method')
+        })
+        
 
     }
 
     render() {
         return(
             <div>
-                <button onClick={this.clickbtn}>test 2</button>
+                Test
             </div>
         )
     }
