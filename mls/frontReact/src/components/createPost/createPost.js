@@ -18,7 +18,10 @@ class CreatePost extends Component {
         this.state = {
             content: "",
             valid: false,
-            booleanUpdatePosts: false, // * Создание простого свойства valid в локальном состоянии компнонента
+            booleanUpdatePosts: false,
+            eventOpenCreatePost: false,
+            eventSubmitPost: "",
+            // * Создание простого свойства valid в локальном состоянии компнонента
        }
         //* Установка обработчиков событий
         this.handleSubmit = this.handleSubmit.bind(this); 
@@ -26,6 +29,8 @@ class CreatePost extends Component {
         this.handlePostChange = this.handlePostChange.bind(this);
         // * Объявление метода обработки события отправи, React передаст событие обработчику
         this.chan = this.chan.bind(this);
+        this.eventOpenCreatePostBtn = this.eventOpenCreatePostBtn.bind(this);
+
     }
     handlePostChange(event) {
         // * Объявление метода для класса, который будет использовать при обновлении текста тела(onChange)
@@ -63,28 +68,60 @@ class CreatePost extends Component {
             content: '',
             valid: null,
             booleanUpdatePosts:true,
+            clickBtnCreatePost: true,
+            eventOpenCreatePost:false,
+            eventSubmitPost: "Пост опубликован"
             // TODO сделать, чтобы textarea очистилась после нажатия на кнопку
         });
 
         
     }
+    componentDidMount() {
+        this.setState({
+            textarea: <textarea placeholder="Что Вы думаете?" id="taPost" onChange={this.handlePostChange}/>
+        })
+    }
+    
     chan(boole){
         if (!boole){
-            console.log("Получил тут")
         this.setState({
             booleanUpdatePosts: false
         })}
     }
+    eventOpenCreatePostBtn() {
+        this.setState({
+            eventOpenCreatePost: true
+        })
+    }
+
+
+
     render() {
-        const { booleanUpdatePosts } = this.state;
-        return(
-        <div>
-            <button onClick={this.handleSubmit}>Пост</button>
-            <textarea placeholder="Что Вы думаете?" onChange={this.handlePostChange}/>
-            <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
-        </div>)
+        const { booleanUpdatePosts, textarea, eventOpenCreatePost, eventSubmitPost } = this.state;
+        if(eventOpenCreatePost===false){
+            return(
+                <React.Fragment>
+                    <button onClick={this.eventOpenCreatePostBtn}>Создать Пост</button>
+                    <br/>
+                    <br/>
+                    {eventSubmitPost}
+                    <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
+
+                </React.Fragment>
+            )
+        } else if (eventOpenCreatePost===true) {
+            return(
+                <div>
+                    {textarea}
+                    <br/>
+                    <br/>
+                    <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
+                    
+                    <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
+                </div>)
+        }
+        
     }
 }
-
 
 export default CreatePost;

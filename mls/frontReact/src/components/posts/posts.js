@@ -6,65 +6,41 @@ class Posts extends Component{
         super(props);
         this.state = {
             data: [],
-            testA: false,
+            isLoaded: false,
         };
+        this.getPostFunc = this.getPostFunc.bind(this);
     }
 
-    componentDidMount() {
-        getPost()
-        // TODO Check for status(200, 404, 400, 500)
+    getPostFunc(){
+        getPost()   
         .then( response => {
-            console.log(response.data, 'this method');
-            const dataTest = response.data.posts;
-            
-            this.setState({
-                data: dataTest
-            })
+            if(response.status>=200){
+                    const DATA_TEST = response.data.posts;
+                        this.setState({
+                            data: DATA_TEST,
+                            isLoaded:true
+                        });
+                }
         })
         .catch(function(error){
             console.log(error);
         });
     }
 
+    componentDidMount() {
+        this.getPostFunc()
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextProps.updatePosts, "nextProps", this.props.updatePosts, 'this.props')
-        console.log(nextState, 'nextState')
-        
         if (nextProps.updatePosts===true) {
-           
-            
-            getPost()
-                // TODO Check for status(200, 404, 400, 500)
-                .then( response => {
-                    console.log(response.data, 'this method');
-                    const dataTest = response.data.posts;
-                    
-                    this.setState({
-                        data: dataTest,
-                    
-                    })
-                    
-                })
-            
-                this.setState({
-                    bole:false
-                })
-                this.props.onChan(this.state.bole)      
+            this.getPostFunc() 
+            this.setState({
+                bole:false
+            })
+            this.props.onChan(this.state.bole)      
         }
         else if(this.props.updatePosts===true){
-            getPost()
-            // TODO Check for status(200, 404, 400, 500)
-            .then( response => {
-                console.log(response.data, 'this method');
-                const dataTest = response.data.posts;
-                
-                this.setState({
-                    data: dataTest,
-                
-                })
-                
-            })
-        
+            this.getPostFunc()       
             this.setState({
                 bole:false
             })
@@ -79,18 +55,29 @@ class Posts extends Component{
     
 
     render() {
-        const { data } = this.state;
-        const postsList = data.map((value, number) => 
+        const { data, isLoaded } = this.state;
+        if (data.length>0){
+        const POSTS_LIST = data.map((value, number) => 
             <div key={number}><h1>{value.content_post}</h1>
             <p>{value.user_post}</p> <p>{value.date_post}</p>
             </div>
         );
         return(
             <div>
-                {postsList}
+                {POSTS_LIST}
             </div>
         )
         }
+        else if(data.length===0 && isLoaded){
+            return(<div>
+                <h3>Постов пока что нет, но Вы можете быть одним из первых</h3>
+            </div>)
+        } else if(data.length===0 && !isLoaded){
+            return(<div>
+                <h3>Загрузка, подождие</h3>
+            </div>)
+        }
+    }
     }
 
 
