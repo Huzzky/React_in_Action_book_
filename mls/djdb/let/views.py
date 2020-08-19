@@ -2,23 +2,24 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Post, User
-from .serializers import PostSerializer, UserSerializer
+from .serializers import PostSerializerGet, PostSerializerPost, UserSerializer
 
 
-class PostView(APIView):
+class PostViewGet(APIView):
     def get(self, request):
         posts = Post.objects.all()
 
-        serializerPost = PostSerializer(posts, many=True)
+        serializerPost = PostSerializerGet(posts, many=True)
 
         return Response({
             "posts": serializerPost.data
         })
-    
+
+class PostViewPost(APIView):
     def post(self, request):
         post = request.data.get('posts')
 
-        serializerPost =  PostSerializer(data=post)
+        serializerPost =  PostSerializerPost(data=post)
 
         if serializerPost.is_valid(raise_exception=True):
             post_saved = serializerPost.save()

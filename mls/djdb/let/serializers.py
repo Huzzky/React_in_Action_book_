@@ -2,7 +2,14 @@ from rest_framework import serializers
 
 from .models import Post, User
 
-class PostSerializer(serializers.Serializer):
+class PostSerializerGet(serializers.Serializer):
+    content_post = serializers.CharField()
+    user_post_id = serializers.IntegerField()
+    user_post = serializers.CharField()
+    date_post = serializers.DateTimeField(format="%h %d, %Y in %H:%M:%S")
+
+
+class PostSerializerPost(serializers.Serializer):
     uuid_post = serializers.UUIDField()
     content_post = serializers.CharField()
     user_post_id = serializers.IntegerField()

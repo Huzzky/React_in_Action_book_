@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
 import CreatePost from './components/createPost/createPost';
-import { postAPost, getPost,} from './components/api/http';
-import Posts from './components/posts/posts';
-
+import { postAPost,} from './components/api/http';
 
 class App extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        dataGetPosts: []
+        dataGetPosts: [],
       }
       this.createNewPost = this.createNewPost.bind(this);
     }
 
     createNewPost(post) {
       return postAPost(post)
+      // return post
     }
     
     render() {
       return (
         <div>
-            <CreatePost onSubmit={this.createNewPost}/>
-            <Posts data={this.state.dataGetPosts}/>
+            <CreatePost onSubmit={this.createNewPost} updatePost={this.updatePosts}/>
         </div>
       )
     }

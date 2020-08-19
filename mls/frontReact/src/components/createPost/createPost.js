@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Filter from 'bad-words';
 import {v4 as uuidv4} from 'uuid';
-
+import Post from '../posts/posts'
 
 
 
@@ -17,13 +17,15 @@ class CreatePost extends Component {
         // * Установка состояния
         this.state = {
             content: "",
-            valid: false, // * Создание простого свойства valid в локальном состоянии компнонента
+            valid: false,
+            booleanUpdatePosts: false, // * Создание простого свойства valid в локальном состоянии компнонента
        }
         //* Установка обработчиков событий
         this.handleSubmit = this.handleSubmit.bind(this); 
         // * Методы класса Bind для обработки передаваемых данных и публикаций изменений
         this.handlePostChange = this.handlePostChange.bind(this);
         // * Объявление метода обработки события отправи, React передаст событие обработчику
+        this.chan = this.chan.bind(this);
     }
     handlePostChange(event) {
         // * Объявление метода для класса, который будет использовать при обновлении текста тела(onChange)
@@ -49,27 +51,37 @@ class CreatePost extends Component {
         if (!this.state.valid) {
             return;
         }
-        const data = {
+        const DATA = {
             // * Создание нового объекта публикации
             content_post: this.state.content,
             uuid_post : uuidv4(),
             user_post_id: 1
 
         };
-        this.props.onSubmit(data);
+        this.props.onSubmit(DATA);
         this.setState({
             content: '',
             valid: null,
+            booleanUpdatePosts:true,
+            // TODO сделать, чтобы textarea очистилась после нажатия на кнопку
         });
-        
+
         
     }
+    chan(boole){
+        if (!boole){
+            console.log("Получил тут")
+        this.setState({
+            booleanUpdatePosts: false
+        })}
+    }
     render() {
+        const { booleanUpdatePosts } = this.state;
         return(
         <div>
             <button onClick={this.handleSubmit}>Пост</button>
             <textarea placeholder="Что Вы думаете?" onChange={this.handlePostChange}/>
-            
+            <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
         </div>)
     }
 }
