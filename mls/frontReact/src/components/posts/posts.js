@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getPost } from '../api/http';
-
+import './posts.css'
 class Posts extends Component{
     constructor(props) {
         super(props);
@@ -58,8 +58,9 @@ class Posts extends Component{
         const { data, isLoaded } = this.state;
         if (data.length>0){
         const POSTS_LIST = data.map((value, number) => 
-            <div key={number}><h1>{value.content_post}</h1>
-            <p>{value.user_post}</p> <p>{value.date_post}</p>
+            <div className="mainDiv-post" key={number}>
+                <div className="s-Div-post"><p className="p-div-post">{value.user_post}</p> <p className="p-div-post">{value.date_post}</p></div>
+                <h1 className="h1-div-post">{value.content_post}</h1>
             </div>
         );
         return(

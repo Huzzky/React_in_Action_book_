@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Filter from 'bad-words';
 import {v4 as uuidv4} from 'uuid';
 import Post from '../posts/posts'
+import DisplayMap from '../map/displayMap';
 
 
 
@@ -78,7 +79,7 @@ class CreatePost extends Component {
     }
     componentDidMount() {
         this.setState({
-            textarea: <textarea placeholder="Что Вы думаете?" id="taPost" onChange={this.handlePostChange}/>
+            textarea: <textarea placeholder="Что Вы думаете?" onChange={this.handlePostChange}/>
         })
     }
     
@@ -101,7 +102,7 @@ class CreatePost extends Component {
         if(eventOpenCreatePost===false){
             return(
                 <React.Fragment>
-                    <button onClick={this.eventOpenCreatePostBtn}>Создать Пост</button>
+                    <button className="btn-createpost" onClick={this.eventOpenCreatePostBtn}>Создать Пост</button>
                     <br/>
                     <br/>
                     {eventSubmitPost}
@@ -114,6 +115,7 @@ class CreatePost extends Component {
                 <div>
                     {textarea}
                     <br/>
+                    <DisplayMap/>
                     <br/>
                     <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
                     

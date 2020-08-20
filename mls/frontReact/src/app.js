@@ -18,7 +18,7 @@ class App extends Component {
     
     render() {
       return (
-        <div>
+        <div className="AppDivMain">
             <CreatePost onSubmit={this.createNewPost} updatePost={this.updatePosts}/>
         </div>
       )
