@@ -82,7 +82,7 @@ class CreatePost extends Component {
     }
     componentDidMount() {
         this.setState({
-            textarea: <textarea placeholder="Что Вы думаете?" className="txtarea-cp" onChange={this.handlePostChange}/>
+            textarea: <textarea placeholder="What's on your mind?" className="txtarea-cp" onChange={this.handlePostChange}/>
         })
     }
     
@@ -115,12 +115,15 @@ class CreatePost extends Component {
             if(clickOpenMapInPost){
                 return(
                     <div className="main-div-createpost">
+                        <div className="sec-div-createpost">
                         {textarea}
-                        <br/>
-                        <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
-                        <br/>
+                        <div className="panel-createpost-div">
+                            <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
+                            <a onClick={this.closeAddMap}>Убрать карту</a>
+                        </div>
                         <DisplayMap/>
-                        <a onClick={this.closeAddMap}>Убрать карту</a>
+                        
+                        </div>
 
                         <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
                     </div>)
@@ -129,7 +132,6 @@ class CreatePost extends Component {
                     <div className="main-div-createpost">
                         <div className="sec-div-createpost">
                             {textarea}
-                            <br/>
                             <div className="panel-createpost-div">
                                 <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
                                 <a onClick={this.openAddMap}>Добавить карту</a>

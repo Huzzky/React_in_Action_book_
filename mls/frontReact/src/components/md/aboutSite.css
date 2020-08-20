@@ -1,6 +1,8 @@
 .p-as{
     font-size: 25px;
     font-weight: 500;
+    padding-bottom: 0.6em;
+    padding-top: 1em;
 }
 
 .sec-div-as {
@@ -10,7 +12,7 @@
 }
 
 .h1-main-as{
-    font-size: 40px;
+    font-size: 50px;
 }
 
 .md-md{
@@ -19,4 +21,9 @@
     background-color: #ffffff;
     margin-top: 2em;
     border-radius: 5px;
+}
+.li-as {
+    font-size: 26px;
+    padding-left: 1em;
+    padding-top: 0.2em;
 }

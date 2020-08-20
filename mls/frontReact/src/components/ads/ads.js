@@ -8,8 +8,10 @@ export default class Ads extends React.Component{
     render() {
         return(
             <div className="div-img-ads">
-                <img src={book_1} className="img-ads-1" width='380' height='480'></img>
-                <img src={bool_2} width='380' height='480' className="img-ads-2"></img>
+                <a href="https://ru.wikipedia.org/wiki/O_RLY%3F" target="_blank"><img src={book_1} className="img-ads-1" width='380' height='480'></img></a>
+                <p>ads by <a target="_blank" href="https://ru.wikipedia.org/wiki/O_RLY%3F">O RLY?</a></p>
+                <a href="https://ru.wikipedia.org/wiki/O_RLY%3F" target="_blank"><img src={bool_2} width='380' height='480' className="img-ads-2"></img></a>
+                <p>ads by <a target="_blank" href="https://ru.wikipedia.org/wiki/O_RLY%3F">O RLY?</a></p>
             </div>
         )
     }
