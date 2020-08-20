@@ -7,6 +7,7 @@ class PostSerializerGet(serializers.Serializer):
     user_post_id = serializers.IntegerField()
     user_post = serializers.CharField()
     date_post = serializers.DateTimeField(format="%h %d, %Y in %H:%M:%S")
+    id_post = serializers.IntegerField()
 
 
 class PostSerializerPost(serializers.Serializer):

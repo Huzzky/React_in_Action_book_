@@ -1,0 +1,12 @@
+.div-img-ads {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2em;
+}
+
+.img-ads-1 {
+    border-radius: 5px;
+}
+.img-ads-2 {
+    border-radius: 5px;
+}

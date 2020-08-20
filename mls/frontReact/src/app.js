@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import CreatePost from './components/createPost/createPost';
 import { postAPost,} from './components/api/http';
+import AboutSite from './components/md/aboutSite';
+import Ads from './components/ads/ads';
+import './app.css'
 
 class App extends Component {
     constructor(props) {
@@ -19,7 +22,9 @@ class App extends Component {
     render() {
       return (
         <div className="AppDivMain">
-            <CreatePost onSubmit={this.createNewPost} updatePost={this.updatePosts}/>
+          <AboutSite/>
+          <CreatePost onSubmit={this.createNewPost} updatePost={this.updatePosts}/>
+          <Ads/>
         </div>
       )
     }

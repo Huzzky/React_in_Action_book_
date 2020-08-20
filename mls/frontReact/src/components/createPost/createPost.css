@@ -1,0 +1,30 @@
+
+.main-div-createpost{
+    padding-top: 2em;
+    margin-right: -4em;
+    margin-left: -4em;
+}
+
+.sec-div-createpost {
+    background-color: #ffffff;
+    border-radius: 5px;
+
+}
+
+.txtarea-cp {
+    resize:none;
+    width: 58em;
+    border-radius: 5px;
+    height: 7.5em;
+    padding-left: 30px;
+    padding-top: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+
+}
+
+.panel-createpost-div{
+    display: flex;
+    justify-content: space-between;
+}

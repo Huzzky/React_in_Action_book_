@@ -4,6 +4,7 @@ import Filter from 'bad-words';
 import {v4 as uuidv4} from 'uuid';
 import Post from '../posts/posts'
 import DisplayMap from '../map/displayMap';
+import "./createPost.css"
 
 
 
@@ -21,7 +22,7 @@ class CreatePost extends Component {
             valid: false,
             booleanUpdatePosts: false,
             eventOpenCreatePost: false,
-            eventSubmitPost: "",
+            clickOpenMapInPost: false,
             // * Создание простого свойства valid в локальном состоянии компнонента
        }
         //* Установка обработчиков событий
@@ -31,6 +32,8 @@ class CreatePost extends Component {
         // * Объявление метода обработки события отправи, React передаст событие обработчику
         this.chan = this.chan.bind(this);
         this.eventOpenCreatePostBtn = this.eventOpenCreatePostBtn.bind(this);
+        this.openAddMap = this.openAddMap.bind(this);
+        this.closeAddMap = this.closeAddMap.bind(this);
 
     }
     handlePostChange(event) {
@@ -79,7 +82,7 @@ class CreatePost extends Component {
     }
     componentDidMount() {
         this.setState({
-            textarea: <textarea placeholder="Что Вы думаете?" onChange={this.handlePostChange}/>
+            textarea: <textarea placeholder="Что Вы думаете?" className="txtarea-cp" onChange={this.handlePostChange}/>
         })
     }
     
@@ -94,36 +97,50 @@ class CreatePost extends Component {
             eventOpenCreatePost: true
         })
     }
+    openAddMap(){
+        this.setState({
+            clickOpenMapInPost: true
+        })
+    }
+    closeAddMap(){
+        this.setState({
+            clickOpenMapInPost: false,
+        })
+    }
 
 
 
     render() {
-        const { booleanUpdatePosts, textarea, eventOpenCreatePost, eventSubmitPost } = this.state;
-        if(eventOpenCreatePost===false){
-            return(
-                <React.Fragment>
-                    <button className="btn-createpost" onClick={this.eventOpenCreatePostBtn}>Создать Пост</button>
-                    <br/>
-                    <br/>
-                    {eventSubmitPost}
-                    <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
+        const { booleanUpdatePosts, textarea, clickOpenMapInPost } = this.state;
+            if(clickOpenMapInPost){
+                return(
+                    <div className="main-div-createpost">
+                        {textarea}
+                        <br/>
+                        <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
+                        <br/>
+                        <DisplayMap/>
+                        <a onClick={this.closeAddMap}>Убрать карту</a>
 
-                </React.Fragment>
-            )
-        } else if (eventOpenCreatePost===true) {
-            return(
-                <div>
-                    {textarea}
-                    <br/>
-                    <DisplayMap/>
-                    <br/>
-                    <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
-                    
-                    <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
-                </div>)
+                        <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
+                    </div>)
+            } else if (!clickOpenMapInPost) {
+                return(
+                    <div className="main-div-createpost">
+                        <div className="sec-div-createpost">
+                            {textarea}
+                            <br/>
+                            <div className="panel-createpost-div">
+                                <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
+                                <a onClick={this.openAddMap}>Добавить карту</a>
+                            </div>
+                        </div>
+                        <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
+                    </div>)
+            }
         }
         
     }
-}
+
 
 export default CreatePost;

@@ -1,21 +1,39 @@
-.s-Div-post{
+*{
+    margin: 0;
+    padding: 0;
+}
+.t-Div-post{
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: -2em;
+    margin-bottom: 0em;
+
 }
 
 .p-div-post:first-child{
-    margin-right: 2em;
+    
 }
 
 
+.secDiv-post {
+    margin-bottom: 1em;
+}
+
 .AppDivMain {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
+    background-color: #E9EBEE;
 }
 
 .btn-createpost {
     padding: 0.8em 5em;
 }
+
+.mainDiv-post{
+    border: 2px solid #fcffff;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0px 0px 15px 3px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    0px 0px 15px 3px rgba(50, 50, 50, 0.5);
+    margin-top: 2em;
+    padding-bottom: 10em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+}
+    

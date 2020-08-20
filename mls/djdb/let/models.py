@@ -13,6 +13,7 @@ class User(models.Model):
     
 
 class Post(models.Model):
+    id_post = models.AutoField(primary_key=True)
     uuid_post = models.UUIDField(default=uuid.uuid4, unique=True,editable=False)
     content_post = models.TextField(blank=False)
     date_post = models.DateTimeField(auto_now=False, auto_now_add=True)

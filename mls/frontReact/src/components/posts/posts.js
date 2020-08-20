@@ -7,8 +7,10 @@ class Posts extends Component{
         this.state = {
             data: [],
             isLoaded: false,
+            reversePostDateBool: false,
         };
         this.getPostFunc = this.getPostFunc.bind(this);
+        this.reversePostDate = this.reversePostDate.bind(this);
     }
 
     getPostFunc(){
@@ -48,23 +50,49 @@ class Posts extends Component{
         }
         
         
-        return true;
-        
+        return true;    
     }
     
+    reversePostDate() {
+        if (this.state.reversePostDateBool===true){
+            this.setState({
+                data: this.state.data.reverse(),
+                reversePostDateBool: false,
+            })
+            console.log(this.state.data)
+            
+        } else if (this.state.reversePostDateBool===false){
+            this.setState({
+                data: this.state.data.reverse(),
+                reversePostDateBool:true,
+            })
+            console.log(this.state.data)
+        }
+    }
     
-
     render() {
         const { data, isLoaded } = this.state;
         if (data.length>0){
         const POSTS_LIST = data.map((value, number) => 
             <div className="mainDiv-post" key={number}>
-                <div className="s-Div-post"><p className="p-div-post">{value.user_post}</p> <p className="p-div-post">{value.date_post}</p></div>
-                <h1 className="h1-div-post">{value.content_post}</h1>
+                <div className="secDiv-post">
+                    <div className="t-Div-post">
+                        <p className="p-div-post">{value.user_post}</p> 
+                        <p className="p-div-post">{value.date_post}</p>
+                    </div>
+                    <hr/>
+                    <div className="f-div-post">
+                        <h1 className="h1-div-post">{value.content_post}</h1>
+                        {/* <p key={value.id_post} className="p-div-post">Удалить</p> */}
+                    </div>
+                </div>
             </div>
         );
+
+
         return(
             <div>
+                {/* <a onClick={this.reversePostDate}>Sort</a> */}
                 {POSTS_LIST}
             </div>
         )

@@ -1,0 +1,22 @@
+.p-as{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.sec-div-as {
+    padding-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.h1-main-as{
+    font-size: 40px;
+}
+
+.md-md{
+    width: 20%;
+    height: 900px;
+    background-color: #ffffff;
+    margin-top: 2em;
+    border-radius: 5px;
+}
