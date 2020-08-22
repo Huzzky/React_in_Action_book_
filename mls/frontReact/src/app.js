@@ -16,7 +16,7 @@ class App extends Component {
 
     createNewPost(post) {
       return postAPost(post)
-      // return post
+      // console.log(post)
     }
     
     render() {

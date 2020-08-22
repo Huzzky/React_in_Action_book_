@@ -17,9 +17,12 @@ export function postAPost(data){
                 "posts": {
                     content_post: data.content_post,
                     user_post_id: data.user_post_id,
-                    uuid_post: data.uuid_post
+                    uuid_post: data.uuid_post,
+                    long_loc_post: data.long_loc_post,
+                    lat_loc_post: data.lat_loc_post
                 }
             
-        })
-        
+        }).catch(function (error) {
+            console.log(error);
+          })
     }

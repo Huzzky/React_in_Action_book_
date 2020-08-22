@@ -10,19 +10,18 @@ export default class DisplayMap extends Component {
             location: {
                 long: null,
                 lat: null,
-
+                mapIsLoaded: false,
             }
             
         };
         this.clickOnMap = this.clickOnMap.bind(this);
-        // this.ensureMapExists = this.ensureMapExists.bind(this); //* Привязка метода класса ensureMapExists
     }
 
 
 
     componentDidMount() {
-    
     }
+
 
     clickOnMap(event) {
         this.setState({
@@ -31,19 +30,18 @@ export default class DisplayMap extends Component {
                 lat: event.get('coords')[1]
             }
         })
-        console.log(this.state)
+        this.props.sendLocation(this.state.location)
     }
 
     render() { 
-        const coordinates = [
-        [this.state.location.long, this.state.location.lat],
-        ];
         return [
             <div className="main-div-map">
                 <YMaps>
-                    <Map defaultState={{ center: [55.751574, 37.573856], zoom: 10,}} onClick={this.clickOnMap} width="100%">
-                    {coordinates.map(coordinate => <Placemark geometry={coordinate} />)}
-                </Map>
+                    <div className="second-div-map">
+                        <Map defaultState={{ center: [55.751574, 37.573856], zoom: 10,}} onClick={this.clickOnMap} width="95%">
+                            <Placemark geometry={[this.state.location.long, this.state.location.lat]}/>
+                        </Map>
+                    </div>
                 </YMaps>
             </div>
         ];

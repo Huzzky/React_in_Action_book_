@@ -20,7 +20,9 @@ class Post(models.Model):
     image_post = models.ImageField(upload_to="img/post", height_field=None, width_field=None, max_length=None, blank=True, null=True)
     like_post = models.IntegerField(default=0, blank=True, editable=False)
     link_post = models.CharField(max_length=150,null=True, default=0 ,blank=True)
-    location_post = models.CharField(max_length=250,null=True, default=0 ,blank=True)
+    # location_post = models.CharField(max_length=250,null=True, default=0 ,blank=True)
+    long_loc_post = models.FloatField(null=True, blank=True)
+    lat_loc_post = models.FloatField(null=True, blank=True)
     user_post = models.ForeignKey("User", on_delete=models.CASCADE)
 
     def __str__(self):

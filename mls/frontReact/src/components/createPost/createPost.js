@@ -23,6 +23,9 @@ class CreatePost extends Component {
             booleanUpdatePosts: false,
             eventOpenCreatePost: false,
             clickOpenMapInPost: false,
+            location: null,
+            isLoadedMap: false,
+            updatePosts: false,
             // * Создание простого свойства valid в локальном состоянии компнонента
        }
         //* Установка обработчиков событий
@@ -34,6 +37,7 @@ class CreatePost extends Component {
         this.eventOpenCreatePostBtn = this.eventOpenCreatePostBtn.bind(this);
         this.openAddMap = this.openAddMap.bind(this);
         this.closeAddMap = this.closeAddMap.bind(this);
+        this.getLocationOfCards = this.getLocationOfCards.bind(this);
 
     }
     handlePostChange(event) {
@@ -64,7 +68,9 @@ class CreatePost extends Component {
             // * Создание нового объекта публикации
             content_post: this.state.content,
             uuid_post : uuidv4(),
-            user_post_id: 1
+            user_post_id: 1,
+            long_loc_post: this.state.location.long,
+            lat_loc_post: this.state.location.lat
 
         };
         this.props.onSubmit(DATA);
@@ -73,8 +79,7 @@ class CreatePost extends Component {
             valid: null,
             booleanUpdatePosts:true,
             clickBtnCreatePost: true,
-            eventOpenCreatePost:false,
-            eventSubmitPost: "Пост опубликован"
+            updatePosts: true
             // TODO сделать, чтобы textarea очистилась после нажатия на кнопку
         });
 
@@ -106,8 +111,17 @@ class CreatePost extends Component {
         this.setState({
             clickOpenMapInPost: false,
         })
+        
     }
 
+    getLocationOfCards(location) {
+        this.setState({
+            location: location
+        })
+    }
+
+    
+    
 
 
     render() {
@@ -116,16 +130,16 @@ class CreatePost extends Component {
                 return(
                     <div className="main-div-createpost">
                         <div className="sec-div-createpost">
-                        {textarea}
-                        <div className="panel-createpost-div">
-                            <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
-                            <a onClick={this.closeAddMap}>Убрать карту</a>
+                            {textarea}
+                            <DisplayMap sendLocation={this.getLocationOfCards} isLoadedCompWithMap={this.isLoadedCompWithMap}/>
+                            <div className="panel-createpost-div">
+                                <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
+                                <a onClick={this.closeAddMap}>Убрать карту</a>
+                            </div>
+                            
                         </div>
-                        <DisplayMap/>
-                        
-                        </div>
-
                         <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>
+                       
                     </div>)
             } else if (!clickOpenMapInPost) {
                 return(

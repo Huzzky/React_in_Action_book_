@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getPost } from '../api/http';
 import './posts.css'
 import adminsvg from './img/wrench.svg'
+import MapInReact from './map/mapInPost';
 class Posts extends Component{
     constructor(props) {
         super(props);
@@ -23,6 +24,7 @@ class Posts extends Component{
                             data: DATA_TEST,
                             isLoaded:true
                         });
+                        console.log(DATA_TEST)
                 }
         })
         .catch(function(error){
@@ -32,6 +34,8 @@ class Posts extends Component{
 
     componentDidMount() {
         this.getPostFunc()
+        this.setState({
+        })
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -70,28 +74,31 @@ class Posts extends Component{
             console.log(this.state.data)
         }
     }
+
     
     render() {
-        const { data, isLoaded } = this.state;
+        const { data, isLoaded, openMap, btnOpenOrNotMap } = this.state;
         if (data.length>0){
-        const POSTS_LIST = data.map((value, number) => 
-            <div className="mainDiv-post" key={number}>
-                <div className="secDiv-post">
-                    <div className="t-Div-post">
+            const POSTS_LIST = data.map((value, number) => 
+                <div className="mainDiv-post" key={number}>
+                    <div className="secDiv-post">
+                        <div className="t-Div-post">
+
+                            <p className="p-div-post user_post"><img className="img-user-post"
+                            src={adminsvg} alt="Admin Img" width="20" height="20"/>{value.user_post}</p> 
+                            <p className="p-div-post date_post">{value.date_post}</p>
+                        </div>
+                        <hr className="hr-post"/>
+                        <div className="f-div-post">
+                            <p className="p-div-post-content content_post">{value.content_post}</p>
+                            {/* <p key={value.id_post} className="p-div-post">Удалить</p> */}
+                            
+                        </div>
+                        <MapInReact long={value.long_loc_post} lat={value.lat_loc_post}/>
                         
-                        <p className="p-div-post user_post"><img className="img-user-post"
-                        src={adminsvg} alt="Admin Img" width="20" height="20"/>{value.user_post}</p> 
-                        <p className="p-div-post date_post">{value.date_post}</p>
-                    </div>
-                    <hr className="hr-post"/>
-                    <div className="f-div-post">
-                        <p className="p-div-post-content content_post">{value.content_post}</p>
-                        {/* <p key={value.id_post} className="p-div-post">Удалить</p> */}
                     </div>
                 </div>
-            </div>
-        );
-
+            );
 
         return(
             <div>
@@ -101,12 +108,12 @@ class Posts extends Component{
         )
         }
         else if(data.length===0 && isLoaded){
-            return(<div>
-                <h3>Постов пока что нет, но Вы можете быть одним из первых</h3>
+            return(<div className="no-post">
+                <h3 className="post-und">Постов пока что нет, но Вы можете быть одним из первых</h3>
             </div>)
         } else if(data.length===0 && !isLoaded){
-            return(<div>
-                <h3>Загрузка, подождие</h3>
+            return(<div className="no-post">
+                <h3 className="loading">Загрузка, подождие</h3>
             </div>)
         }
     }
