@@ -26,16 +26,51 @@
     padding: 0.8em 5em;
 }
 
+.t-Div-post {
+    padding-top: 1em;
+    padding-bottom: 0.4em;
+    display: flex;
+    justify-content: space-between;
+}
+
 .mainDiv-post{
     border: 2px solid #fcffff;
     background-color: #FFFFFF;
     -webkit-box-shadow: 0px 0px 15px 3px rgba(50, 50, 50, 0.5);
     -moz-box-shadow:    0px 0px 15px 3px rgba(50, 50, 50, 0.5);
     margin-top: 2em;
-    padding-bottom: 10em;
+    padding-bottom: 7em;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
     border-radius: 5px;
     margin-right: 0.5em;
     margin-left: 0.5em;
 }
+
+.f-div-post{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.hr-post {
+    border: 1px solid #EEEEEE;
+    margin-left: 1em;
+    margin-right: 1em;
+}
     
+.user_post{
+    padding-left: 1.5em;
+    font-size: 22px;
+}
+
+.date_post {
+    padding-right: 2em;
+}
+
+.p-div-post-content{
+    font-size: 24px;
+    padding-top: 0.8em;
+}
+
+.img-user-post {
+    padding-right: 0.4em;
+}

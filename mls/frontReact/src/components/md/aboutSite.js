@@ -18,18 +18,12 @@ export default class AboutSite extends React.Component{
                             <li className="li-as">Сделай вид, что он есть</li>
                             <li className="li-as">И что ты читаешь новый том "Войны и мир"</li>
                             <li className="li-as">Воды здесь столько же, сколько в Солярисе</li>
-                        <p className="p-as">Если у Вас возникли затруднения или проблемы, то напишите на <a target="_blank" href="#">vladislav.bychkov01@gmail.com</a>
-                        <br/>
-                        <br/>
-                        Мой GitHub:
-                        <br/>
-                        <a target="_blank" href="https://github.com/Huzzky">Huzzky</a>
-                        <br/>
-                        <br/>
-                        Мой Vk:
-                        <br/>
-                        <a target="_blank" href="https://vk.com/h4zci">Vladislav Bychkov</a>
-                        </p>
+                        <p className="p-as">Если у Вас возникли затруднения или проблемы, то напишите на <a target="_blank" href="#">vladislav.bychkov01@gmail.com</a></p>
+                        <p className="p-as">Мой GitHub:
+                        <a target="_blank" href="https://github.com/Huzzky"> Huzzky</a></p>
+                        <p className="p-as">Мой Vk:
+                        <a target="_blank" href="https://vk.com/h4zci"> Vladislav Bychkov</a></p>
+                        
                     </div>
                 </div>
             </div>

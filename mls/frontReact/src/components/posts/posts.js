@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { getPost } from '../api/http';
 import './posts.css'
+import adminsvg from './img/wrench.svg'
 class Posts extends Component{
     constructor(props) {
         super(props);
@@ -77,12 +78,14 @@ class Posts extends Component{
             <div className="mainDiv-post" key={number}>
                 <div className="secDiv-post">
                     <div className="t-Div-post">
-                        <p className="p-div-post">{value.user_post}</p> 
-                        <p className="p-div-post">{value.date_post}</p>
+                        
+                        <p className="p-div-post user_post"><img className="img-user-post"
+                        src={adminsvg} alt="Admin Img" width="20" height="20"/>{value.user_post}</p> 
+                        <p className="p-div-post date_post">{value.date_post}</p>
                     </div>
-                    <hr/>
+                    <hr className="hr-post"/>
                     <div className="f-div-post">
-                        <h1 className="h1-div-post">{value.content_post}</h1>
+                        <p className="p-div-post-content content_post">{value.content_post}</p>
                         {/* <p key={value.id_post} className="p-div-post">Удалить</p> */}
                     </div>
                 </div>
