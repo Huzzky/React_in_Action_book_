@@ -26,6 +26,10 @@ class CreatePost extends Component {
             location: null,
             isLoadedMap: false,
             updatePosts: false,
+            location: {
+                long: null,
+                lat: null
+            }
             // * Создание простого свойства valid в локальном состоянии компнонента
        }
         //* Установка обработчиков событий
@@ -64,16 +68,28 @@ class CreatePost extends Component {
         if (!this.state.valid) {
             return;
         }
-        const DATA = {
-            // * Создание нового объекта публикации
-            content_post: this.state.content,
-            uuid_post : uuidv4(),
-            user_post_id: 1,
-            long_loc_post: this.state.location.long,
-            lat_loc_post: this.state.location.lat
-
-        };
-        this.props.onSubmit(DATA);
+        if (this.state.location.long==="" && this.state.location.lat===""){
+            const DATA = {
+                content_post: this.state.content,
+                uuid_post : uuidv4(),
+                user_post_id: 1,
+                long_loc_post: null,
+                lat_loc_post: null
+            };
+            this.props.onSubmit(DATA);
+        } else {
+            const DATA = {
+                // * Создание нового объекта публикации
+                content_post: this.state.content,
+                uuid_post : uuidv4(),
+                user_post_id: 1,
+                long_loc_post: this.state.location.long,
+                lat_loc_post: this.state.location.lat
+    
+            };
+            this.props.onSubmit(DATA);
+        }
+        
         this.setState({
             content: '',
             valid: null,
@@ -118,6 +134,7 @@ class CreatePost extends Component {
         this.setState({
             location: location
         })
+        console.log(this.state.location)
     }
 
     

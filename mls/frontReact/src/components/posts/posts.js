@@ -75,9 +75,10 @@ class Posts extends Component{
         }
     }
 
+
     
     render() {
-        const { data, isLoaded, openMap, btnOpenOrNotMap } = this.state;
+        const { data, isLoaded } = this.state;
         if (data.length>0){
             const POSTS_LIST = data.map((value, number) => 
                 <div className="mainDiv-post" key={number}>

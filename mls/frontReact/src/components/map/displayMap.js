@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { YMaps, Map, Placemark} from 'react-yandex-maps'
 import './displayMap.css'
 

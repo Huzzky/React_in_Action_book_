@@ -4,6 +4,7 @@ import { postAPost,} from './components/api/http';
 import AboutSite from './components/md/aboutSite';
 import Ads from './components/ads/ads';
 import './app.css'
+// import Cookies from 'js-cookie';
 
 class App extends Component {
     constructor(props) {
@@ -13,6 +14,8 @@ class App extends Component {
       }
       this.createNewPost = this.createNewPost.bind(this);
     }
+
+    
 
     createNewPost(post) {
       return postAPost(post)
