@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import get_object_or_404
 
 from .models import Post, User
 from .serializers import PostSerializerGet, PostSerializerPost, UserSerializer
@@ -27,6 +28,14 @@ class PostViewPost(APIView):
         return Response({
             "success": "Post '{}' created successfully".format(post_saved.content_post)
         })
+
+class PostViewDelete(APIView):
+    def delete(self, request, pk):
+        post = get_object_or_404(Post.objects.all(), pk=pk)
+        post.delete()
+        return Response({
+            "message": "Post with id '{}' has been deleted.".format(pk)
+        }, status=204)
 
 
 class UserView(APIView):

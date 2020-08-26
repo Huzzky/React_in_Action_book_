@@ -29,7 +29,8 @@ class CreatePost extends Component {
             location: {
                 long: 0.0,
                 lat: 0.0
-            }
+            },
+            
             // * Создание простого свойства valid в локальном состоянии компнонента
        }
         //* Установка обработчиков событий
@@ -45,25 +46,33 @@ class CreatePost extends Component {
 
     }
     handlePostChange(event) {
-        // * Объявление метода для класса, который будет использовать при обновлении текста тела(onChange)
-        const content = filter.clean(event.currentTarget.value);
-        // ? Передача значения в форму методу .clean() фильтра и использование возвращаемого значение для 
-        // ? установки состояния
+        if (this.state.clearTextarea===false){
+            // * Объявление метода для класса, который будет использовать при обновлении текста тела(onChange)
+            const content = filter.clean(event.currentTarget.value);
+            // ? Передача значения в форму методу .clean() фильтра и использование возвращаемого значение для 
+            // ? установки состояния
 
-        // * Захват значения элемента textarea из свойства value элемента DOM
-        this.setState(() => {
-            //* Использование этого значения для установки состояния и обновления его с новым значением
-            return {
-                content,
-                valid: content.length <= 280, 
-                /* 
-                * Определение допустимости сообщения путем установки максимальной длины.
-                * Сообщение должно быть не более 280 символов
-                */ 
-            };
-        });
+            // * Захват значения элемента textarea из свойства value элемента DOM
+            this.setState(() => {
+                //* Использование этого значения для установки состояния и обновления его с новым значением
+                return {
+                    content,
+                    valid: content.length <= 280, 
+                    /* 
+                    * Определение допустимости сообщения путем установки максимальной длины.
+                    * Сообщение должно быть не более 280 символов
+                    */ 
+                };
+            });
+        } else if (this.state.clearTextarea===true){
+            event.currentTarget.value = "";
+            this.setState({
+                clearTextarea: false
+            });
+        }
     }
     handleSubmit(event) {
+        
         event.preventDefault()
         if (!this.state.valid) {
             return;
@@ -91,19 +100,28 @@ class CreatePost extends Component {
         }
         
         this.setState({
+            clearTextarea: true,
             content: '',
             valid: null,
             booleanUpdatePosts:true,
             clickBtnCreatePost: true,
-            updatePosts: true
+            updatePosts: true,
+            location: {
+                long: 0.0,
+                lat: 0.0
+            },
+            clickOpenMapInPost: false,
+            
+            
             // TODO сделать, чтобы textarea очистилась после нажатия на кнопку
         });
-
+        console.log(this.state.clearTextarea, 'this btn')
         
     }
     componentDidMount() {
         this.setState({
-            textarea: <textarea placeholder="What's on your mind?" className="txtarea-cp" onChange={this.handlePostChange}/>
+            textarea: <textarea placeholder="What's on your mind?" className="txtarea-cp" onChange={this.handlePostChange}/>,
+            clearTextarea: false,
         })
     }
     
@@ -134,7 +152,6 @@ class CreatePost extends Component {
         this.setState({
             location: location
         })
-        console.log(this.state.location)
     }
 
     
@@ -153,6 +170,7 @@ class CreatePost extends Component {
                                 <button id="btnPost" onClick={this.handleSubmit}>Пост</button>
                                 <a onClick={this.closeAddMap}>Убрать карту</a>
                             </div>
+                            
                             
                         </div>
                         <Post updatePosts={booleanUpdatePosts} onChan={this.chan}/>

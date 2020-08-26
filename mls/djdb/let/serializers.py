@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+
 from .models import Post, User
 
 class PostSerializerGet(serializers.Serializer):
@@ -21,6 +22,7 @@ class PostSerializerPost(serializers.Serializer):
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
+
 
 
 class UserSerializer(serializers.Serializer):

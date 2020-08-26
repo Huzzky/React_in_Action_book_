@@ -3,6 +3,7 @@ import { getPost } from '../api/http';
 import './posts.css'
 import adminsvg from './img/wrench.svg'
 import MapInReact from './map/mapInPost';
+import DeletePost from './deletePost/deletePost';
 class Posts extends Component{
     constructor(props) {
         super(props);
@@ -34,8 +35,6 @@ class Posts extends Component{
 
     componentDidMount() {
         this.getPostFunc()
-        this.setState({
-        })
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -64,16 +63,17 @@ class Posts extends Component{
                 data: this.state.data.reverse(),
                 reversePostDateBool: false,
             })
-            console.log(this.state.data)
+            // console.log(this.state.data)
             
         } else if (this.state.reversePostDateBool===false){
             this.setState({
                 data: this.state.data.reverse(),
                 reversePostDateBool:true,
             })
-            console.log(this.state.data)
+            // console.log(this.state.data)
         }
     }
+
 
 
     
@@ -96,7 +96,7 @@ class Posts extends Component{
                             
                         </div>
                         <MapInReact long={value.long_loc_post} lat={value.lat_loc_post}/>
-                        
+                        <DeletePost idPost={value.id_post}/>
                     </div>
                 </div>
             );

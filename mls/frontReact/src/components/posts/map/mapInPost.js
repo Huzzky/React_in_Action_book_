@@ -1,10 +1,10 @@
 import React from 'react'
 import { YMaps, Map, Placemark} from 'react-yandex-maps'
+import './mapInPost.css'
 
 export default class MapInReact extends React.Component{
     constructor(props){
         super(props);
-        console.log(this.props.long, this.props.lat);
     }
 
     render() {
@@ -16,9 +16,11 @@ export default class MapInReact extends React.Component{
             return(
                 <div>
                     <YMaps>
-                        <Map defaultState={{ center: [this.props.long, this.props.lat], zoom: 10,}} >
-                        <Placemark geometry={[this.props.long, this.props.lat]}/>
-                        </Map>
+                        <div className="mapInPost-div">
+                            <Map defaultState={{ center: [this.props.long, this.props.lat], zoom: 10,}} width="95%" >
+                                <Placemark geometry={[this.props.long, this.props.lat]}/>
+                            </Map>
+                        </div>
                     </YMaps>
                 </div>
             )
