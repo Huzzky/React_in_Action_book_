@@ -8,14 +8,20 @@ export default class MapInReact extends React.Component{
     }
 
     render() {
-        return(
-            <div>
-                <YMaps>
-                    <Map defaultState={{ center: [this.props.long, this.props.lat], zoom: 10,}} >
-                    <Placemark geometry={[this.props.long, this.props.lat]}/>
-                    </Map>
-                </YMaps>
-            </div>
-        )
+        if(this.props.long===0.0 && this.props.lat===0.0){
+            return(
+                <React.Fragment/>
+            )
+        }else{
+            return(
+                <div>
+                    <YMaps>
+                        <Map defaultState={{ center: [this.props.long, this.props.lat], zoom: 10,}} >
+                        <Placemark geometry={[this.props.long, this.props.lat]}/>
+                        </Map>
+                    </YMaps>
+                </div>
+            )
+        }
     }
 }

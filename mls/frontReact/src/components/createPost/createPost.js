@@ -27,8 +27,8 @@ class CreatePost extends Component {
             isLoadedMap: false,
             updatePosts: false,
             location: {
-                long: null,
-                lat: null
+                long: 0.0,
+                lat: 0.0
             }
             // * Создание простого свойства valid в локальном состоянии компнонента
        }

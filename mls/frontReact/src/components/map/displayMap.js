@@ -32,7 +32,7 @@ export default class DisplayMap extends Component {
         this.props.sendLocation(this.state.location)
     }
 
-    render() { 
+    render() {
         return [
             <div className="main-div-map">
                 <YMaps>
