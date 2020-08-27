@@ -12,7 +12,12 @@
 .p-div-post:first-child{
     
 }
-
+.down-panel-post{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 7em;
+}
 
 .secDiv-post {
     margin-bottom: 1em;
@@ -37,7 +42,7 @@
     border: 2px solid #E9EBEE;
     background-color: #FFFFFF;
     margin-top: 2em;
-    padding-bottom: 7em;
+
     border-radius: 10px;
     margin-right: 0.5em;
     margin-left: 0.5em;

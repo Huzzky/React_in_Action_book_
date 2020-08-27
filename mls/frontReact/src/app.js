@@ -13,6 +13,7 @@ class App extends Component {
         dataGetPosts: [],
       }
       this.createNewPost = this.createNewPost.bind(this);
+      this.changeColor = this.changeColor.bind(this);
     }
 
     
@@ -21,10 +22,14 @@ class App extends Component {
       return postAPost(post)
       // console.log(post)
     }
+    changeColor(){
+
+    }
     
     render() {
       return (
         <div className="AppDivMain">
+          {/* <button onClick={this.changeColor}>Поменять цвет</button> */}
           <AboutSite/>
           <CreatePost onSubmit={this.createNewPost} updatePost={this.updatePosts}/>
           <Ads/>

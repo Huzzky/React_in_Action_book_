@@ -11,9 +11,11 @@ class Posts extends Component{
             data: [],
             isLoaded: false,
             reversePostDateBool: false,
+            btnDeletePost: false,
         };
         this.getPostFunc = this.getPostFunc.bind(this);
         this.reversePostDate = this.reversePostDate.bind(this);
+        this.clkBtnDelete=this.clkBtnDelete.bind(this);
     }
 
     getPostFunc(){
@@ -38,24 +40,25 @@ class Posts extends Component{
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.updatePosts===true) {
-            this.getPostFunc() 
-            this.setState({
-                bole:false
-            })
-            this.props.onChan(this.state.bole)      
+        console.log(nextState, 'this nS')
+        console.log(nextProps, 'this nP')
+        if (nextProps.updatePosts===true || this.props.updatePosts===true) {
+            if(this.state.btnDeletePost===false || this.state.btnDeletePost===true){
+                this.getPostFunc() 
+                this.setState({
+                    bole:false
+                })
+                this.props.onChan(this.state.bole)  
+            } 
         }
-        else if(this.props.updatePosts===true){
-            this.getPostFunc()       
-            this.setState({
-                bole:false
-            })
-            this.props.onChan(this.state.bole)  
-        }
-        
-        
         return true;    
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log(prevState, 'this prevState')
+        console.log(prevProps, 'this prevProps')
+    }
+    
     
     reversePostDate() {
         if (this.state.reversePostDateBool===true){
@@ -74,6 +77,11 @@ class Posts extends Component{
         }
     }
 
+    clkBtnDelete(clickOrNO){
+        this.setState({
+            btnDeletePost: clickOrNO,
+        })
+    }
 
 
     
@@ -95,8 +103,11 @@ class Posts extends Component{
                             {/* <p key={value.id_post} className="p-div-post">Удалить</p> */}
                             
                         </div>
-                        <MapInReact long={value.long_loc_post} lat={value.lat_loc_post}/>
-                        <DeletePost idPost={value.id_post}/>
+                        <MapInReact long={value.long_loc_post} lat={value.lat_loc_post}/> 
+                        <div className="down-panel-post">
+                                <DeletePost idPost={value.id_post} clickDeletePost={this.clkBtnDelete}/>
+                                <p>Comment</p>                         
+                        </div>
                     </div>
                 </div>
             );

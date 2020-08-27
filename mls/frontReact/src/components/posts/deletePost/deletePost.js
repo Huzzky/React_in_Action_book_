@@ -12,6 +12,7 @@ export default class DeletePost extends React.Component{
 
     deletePost(){
         postDelete(this.props.idPost)
+        this.props.clickDeletePost(true)
     }
 
     render() {
