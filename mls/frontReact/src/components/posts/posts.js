@@ -53,11 +53,6 @@ class Posts extends Component{
         }
         return true;    
     }
-
-    componentDidUpdate(prevProps, prevState) {
-        console.log(prevState, 'this prevState')
-        console.log(prevProps, 'this prevProps')
-    }
     
     
     reversePostDate() {
