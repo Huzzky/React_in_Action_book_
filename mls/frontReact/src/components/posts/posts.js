@@ -40,8 +40,6 @@ class Posts extends Component{
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextState, 'this nS')
-        console.log(nextProps, 'this nP')
         if (nextProps.updatePosts===true || this.props.updatePosts===true) {
             if(this.state.btnDeletePost===false || this.state.btnDeletePost===true){
                 this.getPostFunc() 
